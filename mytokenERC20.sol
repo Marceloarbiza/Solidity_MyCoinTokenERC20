@@ -24,8 +24,11 @@ contract MyCoinERC20Token {
     event Transfer(address indexed _from, address indexed _to, uint256 _value); // evento para transferir n (_value) tokens de una address (_from) a otra (_to) desde la address de origen que deployó los tokens
     event Approval(address indexed _owner, address indexed _spender, uint256 _value); // evento que registra que se ha autorizado a una cuenta a gestionar determinados tokens
 
-    // TRANSFERIR TOKENS DE UNA ADDRESS ORIGEN A UNA ADDRESS DESTINO
-    function transfer(address _to, uint256 _value) public returns (bool success) { // transferir token de una address a otra | _to: address a la que se envía | _value: cantidad de tokens que se envía
+    // ::: TRANSFERIR TOKENS DE UNA ADDRESS ORIGEN A UNA ADDRESS DESTINO ::: 
+    // transferir token de una address a otra 
+    // _to: address a la que se envía 
+    // _value: cantidad de tokens que se envía
+    function transfer(address _to, uint256 _value) public returns (bool success) {
         require(balanceOf[msg.sender] >= _value, "no tiene suficientes tokens para transferir"); // corroboramos que msg.sender (address que envía) tenga cantidad suficiente para enviar a _to
         balanceOf[msg.sender] -= _value; // bajo la cantidad de tokens a la address que envía
         balanceOf[_to] += _value; // subo la cantidad de tokens a la address que recibe
@@ -34,7 +37,7 @@ contract MyCoinERC20Token {
     }
 
 
-    // AUTORIZAR A UNA ADDRESS A TRANSFERIR N TOKENS A OTRA ADDRESS
+    // ::: AUTORIZAR A UNA ADDRESS A TRANSFERIR N TOKENS A OTRA ADDRESS ::: 
 
     // autorizo a una address a manejar mis tokens
     // _spender: address que autorizo a manejar los tokens
